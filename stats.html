@@ -47,7 +47,8 @@ async function load() {
     const r = await fetch('https://api.github.com/repos/revolver-audio/foni-plugin/releases?per_page=100', { headers: { 'Accept': 'application/vnd.github+json' } });
     if (!r.ok) throw new Error('GitHub answered ' + r.status);
     const rels = await r.json();
-    let total = 0, html = '';
+    // v0.9.0-beta (withdrawn 15 Nov 2026, replaced by 0.9.1 without ASIO) had 2 downloads
+    let total = 2, html = '<tr><td>FONI-0.9.0 installers (withdrawn)</td><td class="rel">v0.9.0-beta</td><td class="n">2</td></tr>';
     for (const rel of rels) {
       for (const a of rel.assets) {
         total += a.download_count;

@@ -12,8 +12,8 @@ Apple Podcasts −16 LUFS, YouTube/Spotify −14, Speech −18, Broadcast −23.
 
 | System | Installer | Formats |
 | --- | --- | --- |
-| Windows 10/11 x64 | [FONI-0.9.0-Windows-Setup.exe](downloads/FONI-0.9.0-Windows-Setup.exe) | VST3, CLAP, AAX*, Standalone |
-| macOS 11+ (Apple Silicon & Intel) | [FONI-0.9.0-macOS.pkg](downloads/FONI-0.9.0-macOS.pkg) | VST3, AU, CLAP, AAX*, Standalone |
+| Windows 10/11 x64 | [FONI-0.9.1-Windows-Setup.exe](downloads/FONI-0.9.1-Windows-Setup.exe) | VST3, CLAP, AAX*, Standalone |
+| macOS 11+ (Apple Silicon & Intel) | [FONI-0.9.1-macOS.pkg](downloads/FONI-0.9.1-macOS.pkg) | VST3, AU, CLAP, AAX*, Standalone |
 
 \* AAX loads in Pro Tools once the plugin is signed (coming in a later release).
 

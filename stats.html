@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>FONI downloads</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<style>
+  :root { --ink:#141316; --panel:#1c1a20; --line:#2c2930; --cream:#efe7d8; --dim:#948c9c; --coral:#ff7a59; --mint:#74d2b3; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--ink); color:var(--cream); font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .wrap { max-width:820px; margin:0 auto; padding:48px 24px; }
+  header { display:flex; align-items:center; gap:14px; margin-bottom:36px; }
+  header img { height:22px; }
+  h1 { font-size:28px; margin:0 0 6px; }
+  .sub { color:var(--dim); margin:0 0 32px; }
+  .total { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:28px; margin-bottom:20px; }
+  .total .n { font-size:64px; font-weight:700; color:var(--coral); line-height:1; font-variant-numeric:tabular-nums; }
+  .total .l { color:var(--dim); margin-top:8px; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  th, td { text-align:left; padding:14px 18px; border-bottom:1px solid var(--line); }
+  th { color:var(--dim); font-weight:500; font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+  td.n { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; }
+  tr:last-child td { border-bottom:0; }
+  .rel { color:var(--mint); font-size:14px; }
+  .foot { color:var(--dim); font-size:14px; margin-top:20px; }
+  button { font:600 14px system-ui; background:var(--ink); color:var(--cream); border:1px solid var(--line); border-radius:4px; padding:8px 14px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="img/brand/revolver-wordmark-small-dark.png" alt="Revolver Audio"></header>
+  <h1>FONI downloads</h1>
+  <p class="sub">Installer downloads from the GitHub releases. Counts come straight from GitHub and update within a few minutes.</p>
+  <div class="total"><div class="n" id="total">…</div><div class="l">total installer downloads</div></div>
+  <table>
+    <thead><tr><th>File</th><th>Release</th><th style="text-align:right">Downloads</th></tr></thead>
+    <tbody id="rows"><tr><td colspan="3">Loading…</td></tr></tbody>
+  </table>
+  <p class="foot"><span id="when"></span> &nbsp; <button id="reload" type="button">Refresh</button></p>
+</div>
+<script>
+async function load() {
+  const rows = document.getElementById('rows');
+  try {
+    const r = await fetch('https://api.github.com/repos/revolver-audio/foni-plugin/releases?per_page=100', { headers: { 'Accept': 'application/vnd.github+json' } });
+    if (!r.ok) throw new Error('GitHub answered ' + r.status);
+    const rels = await r.json();
+    let total = 0, html = '';
+    for (const rel of rels) {
+      for (const a of rel.assets) {
+        total += a.download_count;
+        html += '<tr><td>' + a.name + '</td><td class="rel">' + rel.tag_name + '</td><td class="n">' + a.download_count.toLocaleString('en') + '</td></tr>';
+      }
+    }
+    rows.innerHTML = html || '<tr><td colspan="3">No releases yet.</td></tr>';
+    document.getElementById('total').textContent = total.toLocaleString('en');
+    document.getElementById('when').textContent = 'Updated ' + new Date().toLocaleString();
+  } catch (e) {
+    rows.innerHTML = '<tr><td colspan="3">Could not load the counts (' + e.message + '). Try Refresh in a minute.</td></tr>';
+  }
+}
+document.getElementById('reload').onclick = load;
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+name: Publish release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create GitHub release with installers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" downloads/*.exe downloads/*.pkg \
+            --title "FONI ${GITHUB_REF_NAME#v}" --prerelease \
+            --notes "Free public beta of FONI, the voice leveler for podcast and YouTube by Revolver Audio. Windows: VST3, CLAP, AAX, standalone. macOS: VST3, AU, CLAP, AAX, standalone. Installers are not code-signed yet; see https://revolver-audio.github.io/foni-plugin/#download for the SmartScreen and Gatekeeper steps."

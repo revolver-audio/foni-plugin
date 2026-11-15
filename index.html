@@ -431,9 +431,9 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
           <button type="button" data-v="1" aria-label="1 star">★</button><button type="button" data-v="2" aria-label="2 stars">★</button><button type="button" data-v="3" aria-label="3 stars">★</button><button type="button" data-v="4" aria-label="4 stars">★</button><button type="button" data-v="5" aria-label="5 stars">★</button>
         </div>
         <div class="after">
-          <span class="ok">Thanks! Want to add a sentence?</span>
+          <span class="ok">✓ Rating saved, thank you! Add a comment if you like:</span>
           <textarea id="rate-c" maxlength="1000" placeholder="What worked, what didn't (optional)"></textarea>
-          <button type="button" class="send">Send</button>
+          <button type="button" class="send">Send comment</button>
         </div>
       </div>
       <div class="fb">
@@ -585,9 +585,10 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
       box.classList.add('done'); send({ 'entry.1997402516': val }); });
   });
   box.querySelector('.send').addEventListener('click', e => {
-    const c = document.getElementById('rate-c').value.trim(); if (!c) return;
-    send({ 'entry.564579068': '(' + val + '★) ' + c });
-    box.querySelector('.ok').textContent = 'Got it, thank you!'; e.target.remove(); document.getElementById('rate-c').disabled = true;
+    const ta = document.getElementById('rate-c'), c = ta.value.trim();
+    if (c) send({ 'entry.564579068': '(' + val + '★) ' + c });
+    box.querySelector('.ok').textContent = c ? '✓ Rating and comment sent. Thank you!' : '✓ Rating saved. Thank you!';
+    e.target.remove(); ta.remove();
   });
 })();
 </script>

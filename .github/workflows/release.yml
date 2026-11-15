@@ -1,7 +1,9 @@
 name: Publish release
 on:
+  workflow_dispatch:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths: ['downloads/**', '.github/workflows/release.yml']
 permissions:
   contents: write
 jobs:
@@ -13,6 +15,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" downloads/*.exe downloads/*.pkg \
-            --title "FONI ${GITHUB_REF_NAME#v}" --prerelease \
+          VER=$(ls downloads/*.exe | sed -E 's/.*FONI-([0-9.]+)-.*/\1/')
+          TAG="v${VER}-beta"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" downloads/*.exe downloads/*.pkg --clobber
+            exit 0
+          fi
+          gh release create "$TAG" downloads/*.exe downloads/*.pkg --target "$GITHUB_SHA" \
+            --title "FONI ${VER} beta" --prerelease \
             --notes "Free public beta of FONI, the voice leveler for podcast and YouTube by Revolver Audio. Windows: VST3, CLAP, AAX, standalone. macOS: VST3, AU, CLAP, AAX, standalone. Installers are not code-signed yet; see https://revolver-audio.github.io/foni-plugin/#download for the SmartScreen and Gatekeeper steps."

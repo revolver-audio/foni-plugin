@@ -84,6 +84,22 @@ nav ul a:hover { color: var(--cream); }
 .target .who { font-size: 15px; color: var(--dim); }
 @media (max-width: 760px) { .targets .wrap { grid-template-columns: 1fr 1fr; } .target:nth-child(2) { border-right: 1px solid var(--line); } .target:nth-child(-n+2) { border-bottom: 1px solid var(--line); } }
 
+
+/* listen */
+.ab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.ab-card { background: var(--panel); padding: 24px 22px; }
+.ab-card h3 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+.ab-card .meta { font-family: var(--mono); font-size: 12.5px; color: var(--dim); margin-bottom: 18px; line-height: 1.6; }
+.ab-card .meta b { color: var(--coral); font-weight: 500; }
+.ab-ctl { display: flex; gap: 8px; align-items: center; }
+.ab-ctl button { font: 600 14px var(--body); border: 1px solid var(--line); background: var(--ink); color: var(--cream); padding: 9px 14px; border-radius: 4px; cursor: pointer; }
+.ab-ctl button[aria-pressed="true"] { background: var(--coral); color: #1a0f0b; border-color: var(--coral); }
+.ab-ctl .play { width: 44px; padding: 9px 0; }
+.ab-bar { height: 3px; background: var(--line); margin-top: 16px; border-radius: 2px; overflow: hidden; }
+.ab-bar i { display: block; height: 100%; width: 0; background: var(--coral); }
+.ab-note { color: var(--dim); font-size: 14px; margin-top: 18px; }
+@media (max-width: 900px) { .ab { grid-template-columns: 1fr; } }
+
 /* sections */
 section { padding: 96px 0 0; }
 .sec-head { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 40px; }
@@ -163,6 +179,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
     </a>
     <ul>
       <li><a href="#how">How it works</a></li>
+      <li><a href="#listen">Listen</a></li>
       <li><a href="#chain">Inside</a></li>
       <li><a href="#numbers">Measurements</a></li>
       <li><a href="#formats">Formats</a></li>
@@ -213,6 +230,59 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
         </div>
       </div>
       <div class="shot"><img src="img/foni-ui.png" width="1410" height="840" alt="The FONI plugin window: a large loudness history display with a coral output line sitting on the green target line, input and output meters on the right, three knobs and activity meters below."></div>
+    </div>
+  </section>
+
+
+  <section id="listen">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="tick">Listen</div>
+        <div>
+          <h2>Before and after. Same take, one plugin.</h2>
+          <p>Volunteer actors, each recorded at home on a different microphone. We rendered the clips in REAPER with FONI on its default preset and nothing else. Press play and flip between Before and After: playback stays in sync.</p>
+        </div>
+      </div>
+      <div class="ab">
+        <div class="ab-card" data-demo="1">
+          <h3>Remote cast, home mics</h3>
+          <div class="meta">−25.8 → <b>−15.6 LUFS</b> · LRA 11.2 → <b>4.5 LU</b></div>
+          <div class="ab-ctl">
+            <button class="play" aria-label="Play demo 1">▶</button>
+            <button class="ab-b" aria-pressed="true">Before</button>
+            <button class="ab-a" aria-pressed="false">After</button>
+          </div>
+          <div class="ab-bar"><i></i></div>
+          <audio preload="none" src="audio/FONI-demo-1-before.mp3"></audio>
+          <audio preload="none" src="audio/FONI-demo-1-after.mp3"></audio>
+        </div>
+        <div class="ab-card" data-demo="2">
+          <h3>Two voices, two levels</h3>
+          <div class="meta">−22.6 → <b>−15.4 LUFS</b> · LRA 11.6 → <b>3.9 LU</b></div>
+          <div class="ab-ctl">
+            <button class="play" aria-label="Play demo 2">▶</button>
+            <button class="ab-b" aria-pressed="true">Before</button>
+            <button class="ab-a" aria-pressed="false">After</button>
+          </div>
+          <div class="ab-bar"><i></i></div>
+          <audio preload="none" src="audio/FONI-demo-2-before.mp3"></audio>
+          <audio preload="none" src="audio/FONI-demo-2-after.mp3"></audio>
+        </div>
+        <div class="ab-card" data-demo="3">
+          <h3>Loud lines, quiet lines</h3>
+          <div class="meta">−24.1 → <b>−15.3 LUFS</b> · LRA 13.5 → <b>5.2 LU</b></div>
+          <div class="ab-ctl">
+            <button class="play" aria-label="Play demo 3">▶</button>
+            <button class="ab-b" aria-pressed="true">Before</button>
+            <button class="ab-a" aria-pressed="false">After</button>
+          </div>
+          <div class="ab-bar"><i></i></div>
+          <audio preload="none" src="audio/FONI-demo-3-before.mp3"></audio>
+          <audio preload="none" src="audio/FONI-demo-3-after.mp3"></audio>
+        </div>
+      </div>
+      <p class="ab-note">Source: LibriVox dramatic reading of Oscar Wilde's <em>The Importance of Being Earnest</em> (public domain). Loudness measured with ffmpeg ebur128. Before clips are untouched, so they play quieter.</p>
+      <div class="shot" style="margin-top:28px"><img src="img/FONI-before-after.png" width="1600" height="1000" alt="Waveforms of the three demos: grey before, uneven and quiet; coral after, steady and at full level." loading="lazy"></div>
     </div>
   </section>
 
@@ -400,6 +470,42 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(function () {
+  document.querySelectorAll('.ab-card').forEach(function (card) {
+    var au = card.querySelectorAll('audio'), before = au[0], after = au[1];
+    var play = card.querySelector('.play'), bB = card.querySelector('.ab-b'), bA = card.querySelector('.ab-a');
+    var bar = card.querySelector('.ab-bar i'), useAfter = false;
+    function cur() { return useAfter ? after : before; }
+    function other() { return useAfter ? before : after; }
+    function stopOthers() {
+      document.querySelectorAll('.ab-card').forEach(function (c) {
+        if (c === card) return;
+        c.querySelectorAll('audio').forEach(function (a) { a.pause(); });
+        c.querySelector('.play').textContent = '▶';
+      });
+    }
+    function sel(a) {
+      var playing = !cur().paused, t = cur().currentTime;
+      useAfter = a; bA.setAttribute('aria-pressed', a); bB.setAttribute('aria-pressed', !a);
+      other().pause();
+      try { cur().currentTime = t; } catch (e) {}
+      if (playing) cur().play();
+    }
+    bB.onclick = function () { sel(false); };
+    bA.onclick = function () { sel(true); };
+    play.onclick = function () {
+      if (cur().paused) { stopOthers(); try { other().currentTime = cur().currentTime; } catch (e) {} cur().play(); play.textContent = '❚❚'; }
+      else { cur().pause(); play.textContent = '▶'; }
+    };
+    [before, after].forEach(function (a) {
+      a.addEventListener('timeupdate', function () { if (a === cur() && a.duration) bar.style.width = (100 * a.currentTime / a.duration) + '%'; });
+      a.addEventListener('ended', function () { play.textContent = '▶'; });
+    });
+  });
 })();
 </script>
 </body>

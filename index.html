@@ -177,6 +177,17 @@ td.good { color: var(--mint); }
 
 footer { padding: 40px 0 56px; color: var(--dim); font-size: 14px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; }
+.rate { background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:28px 36px; margin-bottom:20px; display:flex; flex-wrap:wrap; gap:18px 32px; align-items:center; }
+.rate h3 { font-size:24px; font-weight:700; margin:0; flex:1 1 220px; }
+.stars { display:flex; gap:6px; }
+.stars button { background:none; border:0; padding:2px; cursor:pointer; font-size:40px; line-height:1; color:var(--line); transition:color .12s, transform .12s; }
+.stars button.on { color:var(--coral); }
+.stars button:hover { transform:scale(1.12); }
+.rate .after { flex-basis:100%; display:none; gap:12px; flex-wrap:wrap; align-items:center; }
+.rate.done .after { display:flex; }
+.rate textarea { flex:1 1 320px; min-height:46px; background:var(--ink); color:var(--cream); border:1px solid var(--line); border-radius:4px; padding:10px 12px; font:inherit; font-size:15px; resize:vertical; }
+.rate .ok { color:var(--mint); font-size:15px; }
+.rate button.send { background:var(--coral); color:#1a0f0b; border:0; border-radius:4px; padding:12px 18px; font-weight:700; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -414,6 +425,17 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
           <p>FONI is in public beta. What you tell us decides what gets fixed first and what goes into FONI Pro.</p>
         </div>
       </div>
+      <div class="rate" id="rate">
+        <h3>Using FONI? Rate it in one click.</h3>
+        <div class="stars" role="radiogroup" aria-label="Rate FONI from 1 to 5 stars">
+          <button type="button" data-v="1" aria-label="1 star">★</button><button type="button" data-v="2" aria-label="2 stars">★</button><button type="button" data-v="3" aria-label="3 stars">★</button><button type="button" data-v="4" aria-label="4 stars">★</button><button type="button" data-v="5" aria-label="5 stars">★</button>
+        </div>
+        <div class="after">
+          <span class="ok">Thanks! Want to add a sentence?</span>
+          <textarea id="rate-c" maxlength="1000" placeholder="What worked, what didn't (optional)"></textarea>
+          <button type="button" class="send">Send</button>
+        </div>
+      </div>
       <div class="fb">
         <div>
           <h3>Two minutes, seven questions.</h3>
@@ -545,6 +567,27 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
       a.addEventListener('timeupdate', function () { if (a === cur() && a.duration) bar.style.width = (100 * a.currentTime / a.duration) + '%'; });
       a.addEventListener('ended', function () { play.textContent = '▶'; });
     });
+  });
+})();
+</script>
+<script>
+(() => {
+  const URL_ = 'https://docs.google.com/forms/d/e/1FAIpQLSeCOuGRanYwxHxnLyRHIWTXfWq4uym7DxkF_uDSHmJfjWCvKA/formResponse';
+  const box = document.getElementById('rate'); if (!box) return;
+  const btns = [...box.querySelectorAll('.stars button')]; let val = 0;
+  const paint = n => btns.forEach(b => b.classList.toggle('on', +b.dataset.v <= n));
+  const send = (fields) => { const f = new FormData(); for (const k in fields) f.append(k, fields[k]);
+    return fetch(URL_, { method: 'POST', mode: 'no-cors', body: f }).catch(() => {}); };
+  btns.forEach(b => {
+    b.addEventListener('mouseenter', () => paint(+b.dataset.v));
+    b.addEventListener('mouseleave', () => paint(val));
+    b.addEventListener('click', () => { if (box.classList.contains('done')) return; val = +b.dataset.v; paint(val);
+      box.classList.add('done'); send({ 'entry.1997402516': val }); });
+  });
+  box.querySelector('.send').addEventListener('click', e => {
+    const c = document.getElementById('rate-c').value.trim(); if (!c) return;
+    send({ 'entry.564579068': '(' + val + '★) ' + c });
+    box.querySelector('.ok').textContent = 'Got it, thank you!'; e.target.remove(); document.getElementById('rate-c').disabled = true;
   });
 })();
 </script>

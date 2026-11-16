@@ -23,4 +23,4 @@ jobs:
           fi
           gh release create "$TAG" downloads/*.exe downloads/*.pkg --target "$GITHUB_SHA" \
             --title "FONI ${VER} beta" --prerelease \
-            --notes "Free public beta of FONI, the voice leveler for podcast and YouTube by Revolver Audio. Windows: VST3, CLAP, AAX, standalone. macOS: VST3, AU, CLAP, AAX, standalone. Installers are not code-signed yet; see https://revolver-audio.github.io/foni-plugin/#download for the SmartScreen and Gatekeeper steps."
+            --notes "Free public beta of FONI, the voice leveler for podcast and YouTube by Revolver Audio. Windows: VST3, CLAP, standalone. macOS: VST3, AU, CLAP, standalone. Installers are not code-signed yet; see https://revolver-audio.github.io/foni-plugin/#download for the SmartScreen and Gatekeeper steps."

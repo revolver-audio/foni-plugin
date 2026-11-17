@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to pass ACX in Audacity with free tools (RMS, peak, noise floor) · FONI</title>
+<meta name="description" content="The ACX audiobook specs in plain words (RMS −23 to −18 dB, peaks under −3 dB, noise floor under −60 dB) and two free ways to meet them in Audacity, with measured results.">
+<link rel="canonical" href="https://revolver-audio.github.io/foni-plugin/guides/acx-audacity.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#141316; --panel:#1c1a20; --line:#2c2930; --cream:#efe7d8; --dim:#948c9c; --coral:#ff7a59; --mint:#74d2b3;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; color-scheme:dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--ink); color:var(--cream); font:17px/1.65 var(--body); }
+a { color:var(--coral); }
+header, main, footer { max-width:760px; margin:0 auto; padding:0 22px; }
+header { padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+header a.brand { font:800 20px var(--display); letter-spacing:.18em; color:var(--cream); text-decoration:none; }
+header a.cta { background:var(--coral); color:#1a0f0b; padding:8px 14px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px; }
+h1 { font:800 clamp(30px,5vw,44px)/1.1 var(--display); margin:48px 0 14px; }
+h2 { font:700 26px/1.2 var(--display); margin:44px 0 10px; }
+.lede { color:var(--dim); font-size:19px; }
+table { width:100%; border-collapse:collapse; margin:18px 0; font-size:16px; }
+th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); }
+th { color:var(--dim); font-weight:500; font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+td.num { font-family:var(--mono); color:var(--mint); white-space:nowrap; }
+td.bad { font-family:var(--mono); color:var(--coral); white-space:nowrap; }
+.box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:20px 0; }
+ol li, ul li { margin:6px 0; }
+code { font-family:var(--mono); font-size:.92em; color:var(--mint); }
+.src { color:var(--dim); font-size:14px; }
+footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../">FONI</a>
+  <a class="cta" href="../#download">Get the free beta</a>
+</header>
+<main>
+  <h1>How to pass ACX in Audacity with free tools</h1>
+  <p class="lede">ACX checks three numbers on every chapter: RMS between −23 and −18 dB, peaks under −3 dB, and a noise floor under −60 dB. Peak and RMS are easy to fix with processing. The noise floor is mostly decided when you record. Here is what each number means and two free ways to pass.</p>
+
+  <h2>The ACX specs</h2>
+  <table>
+    <tr><th>Check</th><th>Requirement</th></tr>
+    <tr><td>RMS (average level)</td><td class="num">−23 to −18 dB</td></tr>
+    <tr><td>Peak</td><td class="num">below −3 dB</td></tr>
+    <tr><td>Noise floor</td><td class="num">below −60 dB RMS</td></tr>
+    <tr><td>File</td><td class="num">MP3, CBR, 192 kbps or higher, 44.1 kHz</td></tr>
+    <tr><td>Room tone</td><td class="num">1–5 s at start and end, never more than 5 s</td></tr>
+    <tr><td>Length</td><td class="num">max 120 min per file, one chapter per file</td></tr>
+  </table>
+  <p>Mono or stereo are both fine, as long as every file uses the same one. ACX also requires human narration unless they have authorized otherwise, opening and closing credits as separate files, and a retail sample of five minutes or less (<a href="https://help.acx.com/s/article/acx-audio-submission-requirements">ACX audio submission requirements</a>).</p>
+
+  <h2>What the three numbers mean</h2>
+  <ul>
+    <li><b>RMS</b> is the average level of the whole chapter. Too low and listeners turn it up and hear the noise; too high and it sounds squashed.</li>
+    <li><b>Peak</b> is the single loudest moment. Keeping it under −3 dB leaves room for MP3 encoding, which can push peaks up a little.</li>
+    <li><b>Noise floor</b> is the level of the quietest half-second, normally the room tone between sentences. It catches computer fans, traffic, fridges and USB hum.</li>
+  </ul>
+  <div class="box"><b>The catch:</b> anything that raises the RMS also raises the noise. If your recording needs +10 dB to reach −20 dB RMS, the room tone goes up by about the same amount. A quiet room is what makes the noise floor pass, not a plugin.</div>
+
+  <h2>Before you start</h2>
+  <ol>
+    <li>Install the free <b>ACX Check</b> analyzer from the <a href="https://plugins.audacityteam.org/analyzers/analysis-plugins">Audacity plugins site</a>. It reads all three numbers for you.</li>
+    <li>Export the raw recording as a WAV and keep it somewhere safe. Never edit your only copy, and never do production work on MP3s.</li>
+    <li>Edit the chapter first: cuts, retakes, breaths you want gone. Process last.</li>
+  </ol>
+
+  <h2>Method 1: Audacity's own effects</h2>
+  <p>This is the process from Audacity's <a href="https://support.audacityteam.org/au3/audio-editing/audiobook-mastering">Audiobook Mastering</a> page. Select the whole chapter, then:</p>
+  <ol>
+    <li><code>Filter Curve EQ</code> → Factory Presets → <em>Low roll-off for speech</em>. This removes rumble below the voice.</li>
+    <li><code>Loudness Normalization</code> → normalize <em>RMS</em> to <code>−20 dB</code>.</li>
+    <li><code>Limiter</code> → Soft Limit, limit to <code>−3.50 dB</code>.</li>
+    <li><code>Analyze → ACX Check</code>.</li>
+  </ol>
+  <p>Peak and RMS should now pass. The menus above are from Audacity 3; Audacity 4 has the same effects, sometimes in different submenus. Audacity's page also warns against heavy processing: ACX's human reviewers can reject a chapter as over-processed.</p>
+
+  <h2>Method 2: FONI's Audiobook preset</h2>
+  <p><a href="../">FONI</a> is our free voice plugin (VST3, AU, CLAP and standalone, Windows and macOS). It works in Audacity like any VST3 effect (in Audacity 4: <em>Effect → VST3 → Revolver Audio → FONI</em>). The <em>Audiobook (ACX-style)</em> preset sets a gentle leveler, a −20 LUFS target, an 80 Hz low cut, a −3 dBTP ceiling and Pause Cleanup. One effect does the job of steps 1–3 above, and it also evens out sentences that come out louder or quieter than the rest.</p>
+  <p>FONI aims at LUFS, not RMS. For speech the two land close, but they are not the same measurement, so always confirm with ACX Check. We ran three voice recordings through the preset and measured them the way ACX Check does:</p>
+  <table>
+    <tr><th>Recording</th><th>RMS</th><th>Peak</th><th>Noise floor</th></tr>
+    <tr><td>Quiet room, quiet take</td><td class="num">−30.1 → −20.9</td><td class="num">−7.5 → −3.3</td><td class="num">→ −75.4</td></tr>
+    <tr><td>Ordinary room</td><td class="num">−22.2 → −21.2</td><td class="num">−6.2 → −3.3</td><td class="num">−73.9 → −64.4</td></tr>
+    <tr><td>Noisy room</td><td class="num">−23.7 → −20.8</td><td class="num">−3.5 → −3.3</td><td class="bad">−60.9 → −53.3 ✗</td></tr>
+  </table>
+  <p>RMS and peak passed on all three. After export to 192 kbps MP3 the second file measured −21.4 dB RMS and −3.5 dB peak, so the encode did not push it over. The noisy recording failed the noise floor, for the reason in the box above: FONI raised the voice, and the room came up with it. Pause Cleanup lowers the gain a little in the pauses, but it is not a noise reducer.</p>
+  <div class="box"><b>If the noise floor fails:</b> run Audacity's <code>Noise Reduction</code> on the raw recording first (a light setting, sampled from your room tone), then FONI, then ACX Check. If it still fails, the fix is the room: turn off fans, move the mic closer, add soft furnishings, and record again.</div>
+
+  <h2>Common reasons chapters fail</h2>
+  <ul>
+    <li><b>Room tone that is digital silence.</b> Cutting pauses to pure zero can confuse ACX Check and sounds unnatural. Use real room tone.</li>
+    <li><b>More than 5 seconds of silence</b> at the start or end of a file.</li>
+    <li><b>Normalizing peaks instead of RMS.</b> "Normalize to −3 dB" fixes the peak and leaves the RMS wherever it was.</li>
+    <li><b>Heavy noise reduction.</b> It passes the meter and fails the human check: watery, metallic voice.</li>
+    <li><b>Measuring the WAV and uploading a different MP3.</b> Check the file you actually send.</li>
+  </ul>
+  <p class="src">Sources: <a href="https://help.acx.com/s/article/acx-audio-submission-requirements">ACX audio submission requirements</a> · <a href="https://support.audacityteam.org/au3/audio-editing/audiobook-mastering">Audacity Support: Audiobook Mastering</a>. Measurements: FONI 0.9.3, Audiobook (ACX-style) preset, RMS over the whole file, noise floor as the quietest 500 ms. Last checked 17 November 2026. See also: <a href="podcast-loudness-lufs.html">How to hit −16 LUFS for podcasts</a>.</p>
+</main>
+<footer>© 2026 Revolver Audio · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
+</body>
+</html>

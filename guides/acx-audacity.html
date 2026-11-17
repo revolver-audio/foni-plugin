@@ -83,14 +83,15 @@ footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
 
   <h2>Method 2: FONI's Audiobook preset</h2>
   <p><a href="../">FONI</a> is our free voice plugin (VST3, AU, CLAP and standalone, Windows and macOS). It works in Audacity like any VST3 effect (in Audacity 4: <em>Effect → VST3 → Revolver Audio → FONI</em>). The <em>Audiobook (ACX-style)</em> preset sets a gentle leveler, a −20 LUFS target, an 80 Hz low cut, a −3 dBTP ceiling and Pause Cleanup. One effect does the job of steps 1–3 above, and it also evens out sentences that come out louder or quieter than the rest.</p>
-  <p>FONI aims at LUFS, not RMS. For speech the two land close, but they are not the same measurement, so always confirm with ACX Check. We ran three voice recordings through the preset and measured them the way ACX Check does:</p>
+  <p>FONI aims at LUFS, not RMS, and the two differ with the track layout, so always confirm with ACX Check. We ran three voice recordings through the preset and measured them the way ACX Check does:</p>
   <table>
-    <tr><th>Recording</th><th>RMS</th><th>Peak</th><th>Noise floor</th></tr>
-    <tr><td>Quiet room, quiet take</td><td class="num">−30.1 → −20.9</td><td class="num">−7.5 → −3.3</td><td class="num">→ −75.4</td></tr>
-    <tr><td>Ordinary room</td><td class="num">−22.2 → −21.2</td><td class="num">−6.2 → −3.3</td><td class="num">−73.9 → −64.4</td></tr>
-    <tr><td>Noisy room</td><td class="num">−23.7 → −20.8</td><td class="num">−3.5 → −3.3</td><td class="bad">−60.9 → −53.3 ✗</td></tr>
+    <tr><th>Recording</th><th>Mono track, Target −20</th><th>Stereo track, Target −20</th><th>Stereo track, Target −17</th></tr>
+    <tr><td>Quiet room</td><td class="num">RMS −20.8 · peak −3.3</td><td class="bad">RMS −23.7 ✗</td><td class="num">RMS −20.6 · peak −3.3</td></tr>
+    <tr><td>Ordinary room</td><td class="num">RMS −21.2 · peak −3.3</td><td class="bad">RMS −24.1 ✗</td><td class="num">RMS −21.2 · peak −3.3</td></tr>
+    <tr><td>Noisy room</td><td class="num">RMS −20.8 · peak −3.3</td><td class="bad">RMS −23.9 ✗</td><td class="num">RMS −20.9 · peak −3.3</td></tr>
   </table>
-  <p>RMS and peak passed on all three. After export to 192 kbps MP3 the second file measured −21.4 dB RMS and −3.5 dB peak, so the encode did not push it over. The noisy recording failed the noise floor, for the reason in the box above: FONI raised the voice, and the room came up with it. Pause Cleanup lowers the gain a little in the pauses, but it is not a noise reducer.</p>
+  <div class="box"><b>Mono or stereo track?</b> Most narrators record in mono. On a <b>mono track</b>, keep Target at −20. If your mono voice sits on a <b>stereo track</b> (the same signal left and right, common in REAPER and other DAWs), LUFS counts the two channels together and the RMS ends up about 3 dB lower: set Target to <b>−17</b>. If you are not sure which you have, try −20 and check with ACX Check. (The next FONI update adds a live ACX readout that suggests the Target for you.)</div>
+  <p>After export to 192 kbps MP3 the peaks stayed below −3 dB (−3.5 dB on the file we checked). The noise floor is the hard part: on the noisy recording it measured −53 dB on a mono track, above the −60 dB limit, because FONI raised the voice and the room came up with it. Pause Cleanup lowers the gain a little in the pauses, but it is not a noise reducer.</p>
   <div class="box"><b>If the noise floor fails:</b> run Audacity's <code>Noise Reduction</code> on the raw recording first (a light setting, sampled from your room tone), then FONI, then ACX Check. If it still fails, the fix is the room: turn off fans, move the mic closer, add soft furnishings, and record again.</div>
 
   <h2>Common reasons chapters fail</h2>
@@ -101,7 +102,7 @@ footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
     <li><b>Heavy noise reduction.</b> It passes the meter and fails the human check: watery, metallic voice.</li>
     <li><b>Measuring the WAV and uploading a different MP3.</b> Check the file you actually send.</li>
   </ul>
-  <p class="src">Sources: <a href="https://help.acx.com/s/article/acx-audio-submission-requirements">ACX audio submission requirements</a> · <a href="https://support.audacityteam.org/au3/audio-editing/audiobook-mastering">Audacity Support: Audiobook Mastering</a>. Measurements: FONI 0.9.3, Audiobook (ACX-style) preset, RMS over the whole file, noise floor as the quietest 500 ms. Last checked 17 November 2026. See also: <a href="podcast-loudness-lufs.html">How to hit −16 LUFS for podcasts</a>.</p>
+  <p class="src">Sources: <a href="https://help.acx.com/s/article/acx-audio-submission-requirements">ACX audio submission requirements</a> · <a href="https://support.audacityteam.org/au3/audio-editing/audiobook-mastering">Audacity Support: Audiobook Mastering</a>. Measurements: FONI 0.9.3 DSP, Audiobook (ACX-style) preset (stereo = the same voice on both channels), RMS over the whole file, noise floor as the quietest 500 ms. Last checked 17 November 2026 (stereo-track results added the same day). See also: <a href="podcast-loudness-lufs.html">How to hit −16 LUFS for podcasts</a>.</p>
 </main>
 <footer>© 2026 Revolver Audio · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
 </body>

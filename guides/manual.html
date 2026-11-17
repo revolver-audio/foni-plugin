@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FONI user guide: every knob, button and meter explained · FONI</title>
+<meta name="description" content="What every control in the free FONI voice leveler does: Amount, Brightness, Target, the activity meters, Before, ACX check, Low cut, Ceiling, Pause cleanup, A/B and more.">
+<link rel="canonical" href="https://revolver-audio.github.io/foni-plugin/guides/manual.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#141316; --panel:#1c1a20; --line:#2c2930; --cream:#efe7d8; --dim:#948c9c; --coral:#ff7a59; --mint:#74d2b3;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; color-scheme:dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--ink); color:var(--cream); font:17px/1.65 var(--body); }
+a { color:var(--coral); }
+header, main, footer { max-width:860px; margin:0 auto; padding:0 22px; }
+header { padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+header a.brand { font:800 20px var(--display); letter-spacing:.18em; color:var(--cream); text-decoration:none; }
+header a.cta { background:var(--coral); color:#1a0f0b; padding:8px 14px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px; }
+h1 { font:800 clamp(30px,5vw,44px)/1.1 var(--display); margin:48px 0 14px; }
+h2 { font:700 26px/1.2 var(--display); margin:46px 0 10px; }
+.lede { color:var(--dim); font-size:19px; }
+figure { margin:26px 0; }
+figure img { width:100%; height:auto; border-radius:10px; border:1px solid var(--line); display:block; }
+figcaption { color:var(--dim); font-size:14px; margin-top:8px; }
+dl { margin:0; }
+.item { display:grid; grid-template-columns:38px 1fr; gap:4px 12px; padding:14px 0; border-bottom:1px solid var(--line); }
+.n { width:28px; height:28px; border-radius:50%; background:var(--coral); color:#1a0f0b; font:700 14px/28px var(--body); text-align:center; margin-top:2px; }
+.item dt { font-weight:600; }
+.item dd { margin:0; grid-column:2; color:var(--cream); }
+.item dd p { margin:4px 0; }
+.tip { color:var(--dim); font-size:15px; }
+.box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:20px 0; }
+code { font-family:var(--mono); font-size:.9em; color:var(--mint); }
+footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../">FONI</a>
+  <a class="cta" href="../#download">Download FONI</a>
+</header>
+<main>
+  <h1>FONI user guide</h1>
+  <p class="lede">Every knob, button and meter, in the order you meet them. If you only read one line: put FONI on the voice track, pick a preset, choose where you publish under Target, and press play.</p>
+
+  <figure>
+    <img src="../img/foni-guide.jpg" alt="The FONI plugin window with numbered markers on every control" width="2160" height="1288">
+    <figcaption>FONI 0.9.4 with the <em>Podcast – Natural</em> preset, playing a real voice recording. The numbers match the list below.</figcaption>
+  </figure>
+
+  <h2>Top bar</h2>
+  <dl>
+    <div class="item"><span class="n">1</span><dt>ACX</dt><dd><p>Switches the bottom bar to an audiobook check: <b>RMS</b>, <b>Peak</b> and <b>Noise</b> floor of FONI's output since the last Reset, each marked <em>ok</em>, <em>low</em> or <em>high</em> against the ACX limits (RMS −23 to −18 dB, peak below −3 dB, noise floor below −60 dB). After 10 seconds of audio it says <em>in range</em> or <em>out of range</em>, and if the RMS is off it tells you which Target to set. Turns on by itself with the Audiobook preset. Still confirm the exported file with ACX Check; see the <a href="acx-audacity.html">ACX guide</a>.</p></dd></div>
+    <div class="item"><span class="n">2</span><dt>Presets</dt><dd><p>Nine starting points: Podcast – Natural, Podcast – Radio Voice, YouTube Voiceover, Interview Guest / Remote, Live Stream, Audiobook (ACX-style), Broadcast (EBU R128), Deep Voice – Clarity, Gentle Touch. The arrows step through them. A preset only sets the knobs and switches; change anything afterwards.</p></dd></div>
+    <div class="item"><span class="n">3</span><dt>A / B / Copy</dt><dd><p>Two complete sets of settings you can flip between to compare. <em>Copy</em> copies the current one to the other slot. Both are saved with your project.</p></dd></div>
+    <div class="item"><span class="n">4</span><dt>Undo / Redo</dt><dd><p>Steps back and forward through your changes.</p></dd></div>
+    <div class="item"><span class="n">5</span><dt>Bypass</dt><dd><p>Plays the original signal, latency-compensated and with a short crossfade, so there are no clicks. FONI keeps listening while bypassed, so it is ready when you switch back.</p></dd></div>
+    <div class="item"><span class="n">6</span><dt>Before</dt><dd><p>Plays the original <b>at the same loudness as FONI's output</b>. Bypass is usually quieter, and louder always sounds "better", so this is the fair way to judge what FONI does. The display shows how much the original is being raised (for example <em>+8.1 dB</em>). Listening aid only: it is not saved and does not affect your export.</p></dd></div>
+  </dl>
+
+  <h2>Display</h2>
+  <dl>
+    <div class="item"><span class="n">7</span><dt>Loudness history</dt><dd><p>The last 11 seconds. The <b>orange line</b> is FONI's output and the <b>dotted line</b> is the input, both as momentary loudness (400 ms). The <b>green line</b> is your Target. The thin ticks along the bottom show gain reduction from the compressor, de-esser and limiter. When FONI is working well the orange line hugs the target while the dotted line wanders.</p></dd></div>
+    <div class="item"><span class="n">8</span><dt>Short-term LUFS</dt><dd><p>The output loudness over the last 3 seconds, the number most loudness meters show while you play.</p></dd></div>
+    <div class="item"><span class="n">9</span><dt>IN · OUT · GR meters</dt><dd><p>Input and output loudness with a short peak hold, plus total gain reduction. The thin green line across the IN and OUT meters is the Target.</p></dd></div>
+  </dl>
+
+  <h2>Main controls</h2>
+  <dl>
+    <div class="item"><span class="n">10</span><dt>Amount</dt><dd><p>How much FONI does. The leveler, compressor, de-esser and pause cleanup all move together: at 0% FONI levels gently (up to ±6 dB) with light compression; at 100% it rides the voice up to ±18 dB, compresses firmly and lowers the pauses by up to 9 dB.</p><p class="tip">Start around 40–50% and adjust by ear. Raise it for uneven speakers or remote guests, lower it for performances you want to keep dynamic.</p></dd></div>
+    <div class="item"><span class="n">11</span><dt>Brightness</dt><dd><p>Presence (around 4 kHz) and air (above 10 kHz). Turn right for a clearer, more forward voice; left for a warmer, softer one. The de-esser follows, so brighter settings also tame more S sounds.</p></dd></div>
+    <div class="item"><span class="n">12</span><dt>Target and platform</dt><dd><p>The loudness FONI brings the output to, in LUFS. Pick where you publish from the list below the knob: <em>Apple Podcasts −16</em>, <em>YouTube / Spotify −14</em>, <em>Speech (AES) −18</em>, <em>Broadcast (EBU) −23</em>. Any other value shows as <em>Custom</em>. Double-click the knob to return to −16.</p><p class="tip">FONI needs about a minute of speech to settle exactly on the target. See <a href="podcast-loudness-lufs.html">which LUFS to use</a>.</p></dd></div>
+    <div class="item"><span class="n">13</span><dt>Activity rows</dt><dd><p>What each stage is doing right now, in dB:</p>
+      <p><b>Leveler</b>: slow gain riding, lifting quiet passages and lowering loud ones (green, can go both ways).<br>
+      <b>Compressor</b>: evens out syllables and gives the voice body.<br>
+      <b>De-esser</b>: softens harsh S, SH and T sounds.<br>
+      <b>Limiter</b>: true-peak limiter that keeps peaks under the Ceiling.<br>
+      <b>Pause cleanup</b>: how much the gain is lowered between phrases.</p></dd></div>
+  </dl>
+
+  <h2>Bottom bar</h2>
+  <dl>
+    <div class="item"><span class="n">14</span><dt>Integrated · True peak · status</dt><dd><p><b>Integrated</b> is the loudness of everything played since the last Reset, the figure platforms measure. <b>True peak</b> is the highest peak, including peaks between samples; it turns red if it goes above the Ceiling. The status reads <em>Listening</em>, <em>On target</em> (within ±1 LU), <em>Below target</em> or <em>Above target</em>. With <b>ACX</b> on, this area shows the ACX readings instead.</p></dd></div>
+    <div class="item"><span class="n">15</span><dt>Reset</dt><dd><p>Starts the integrated loudness, true peak and ACX readings again. Press it before playing the part you want to measure.</p></dd></div>
+    <div class="item"><span class="n">16</span><dt>Low cut</dt><dd><p>Removes rumble, handling noise and desk thumps below 60, 80, 100 or 120 Hz, or Off. 80 Hz suits most voices; use 100–120 Hz for boomy rooms or close-up mics.</p></dd></div>
+    <div class="item"><span class="n">17</span><dt>Ceiling</dt><dd><p>The maximum true peak: −1 dBTP for podcasts and streaming, −3 dBTP for audiobooks (ACX).</p></dd></div>
+    <div class="item"><span class="n">18</span><dt>Pause cleanup</dt><dd><p>Gently lowers the gain between phrases, so breaths and room tone are not pushed up along with the voice. It does not remove noise during speech; for a noisy room, use a noise reducer before FONI.</p></dd></div>
+  </dl>
+
+  <h2>Good to know</h2>
+  <div class="box">
+    <p><b>Where to put it:</b> on the voice track, after any noise reduction and before music or effects. One instance per voice works best for interviews.</p>
+    <p><b>Latency:</b> 3 ms (the limiter's look-ahead). FONI reports it to your app, which compensates automatically.</p>
+    <p><b>Window size:</b> drag the bottom-right corner; FONI remembers the size.</p>
+    <p><b>Automation:</b> every knob and switch can be automated in your app.</p>
+  </div>
+  <p>New to FONI? Start with <a href="install.html">installing it</a>, then come back here. Questions: <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a>.</p>
+</main>
+<footer>© 2026 Revolver Audio · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
+</body>
+</html>

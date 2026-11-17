@@ -416,6 +416,47 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
   </section>
 
 
+  <section id="install">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="tick">06 · Install</div>
+        <div><h2>Install in a minute.</h2></div>
+      </div>
+      <div class="formats">
+        <div class="card">
+          <h3>Windows</h3>
+          <ul>
+            <li>Run <em>FONI-0.9.3-Windows-Setup.exe</em> and tick the formats you want.</li>
+            <li>VST3 goes to <code>C:\Program Files\Common Files\VST3</code>, CLAP to <code>C:\Program Files\Common Files\CLAP</code>, the standalone app to <code>C:\Program Files\Revolver Audio\FONI</code>.</li>
+            <li>If SmartScreen appears, choose <em>More info → Run anyway</em>.</li>
+          </ul>
+          <h3 style="margin-top:24px">macOS</h3>
+          <ul>
+            <li>Open <em>FONI-0.9.3-macOS.pkg</em> and pick the formats.</li>
+            <li>VST3, AU and CLAP go to <code>/Library/Audio/Plug-Ins</code>, the app to <code>/Applications</code>.</li>
+            <li>If the installer is blocked, open <em>System Settings → Privacy &amp; Security</em> and click <em>Open Anyway</em>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>First use</h3>
+          <ul>
+            <li>Rescan plugins in your DAW, then insert FONI on the voice track, after any noise reduction.</li>
+            <li>Pick a preset or a platform under Target (Apple Podcasts −16, YouTube / Spotify −14).</li>
+            <li>Play a minute of speech: the output settles on the target and the meter shows <em>On target</em>.</li>
+          </ul>
+          <h3 style="margin-top:24px" id="changelog">Changelog</h3>
+          <ul>
+            <li><b>0.9.3</b> · 16 Nov 2026 · No more level dips in continuous speech with Pause cleanup on; output lands on the loudness target more precisely, also on noisy recordings; fix for hosts that send fewer channels.</li>
+            <li><b>0.9.2</b> · 15 Nov 2026 · AAX left out of the installers until it is signed.</li>
+            <li><b>0.9.1</b> · 15 Nov 2026 · Standalone app ships without ASIO for now.</li>
+            <li><b>0.9.0</b> · 14 Nov 2026 · First public beta.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <section id="feedback">
     <div class="wrap">
       <div class="sec-head">

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to hit −16 LUFS for Apple Podcasts (and −14 for Spotify / YouTube) · FONI</title>
+<meta name="description" content="What LUFS your podcast should be, what true peak means, and three free ways to hit −16 LUFS for Apple Podcasts or −14 LUFS for Spotify and YouTube.">
+<link rel="canonical" href="https://revolver-audio.github.io/foni-plugin/guides/podcast-loudness-lufs.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#141316; --panel:#1c1a20; --line:#2c2930; --cream:#efe7d8; --dim:#948c9c; --coral:#ff7a59; --mint:#74d2b3;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; color-scheme:dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--ink); color:var(--cream); font:17px/1.65 var(--body); }
+a { color:var(--coral); }
+header, main, footer { max-width:760px; margin:0 auto; padding:0 22px; }
+header { padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+header a.brand { font:800 20px var(--display); letter-spacing:.18em; color:var(--cream); text-decoration:none; }
+header a.cta { background:var(--coral); color:#1a0f0b; padding:8px 14px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px; }
+h1 { font:800 clamp(30px,5vw,44px)/1.1 var(--display); margin:48px 0 14px; }
+h2 { font:700 26px/1.2 var(--display); margin:44px 0 10px; }
+.lede { color:var(--dim); font-size:19px; }
+table { width:100%; border-collapse:collapse; margin:18px 0; font-size:16px; }
+th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); }
+th { color:var(--dim); font-weight:500; font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+td.num { font-family:var(--mono); color:var(--mint); white-space:nowrap; }
+.box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:20px 0; }
+ol li, ul li { margin:6px 0; }
+code { font-family:var(--mono); font-size:.92em; color:var(--mint); }
+.src { color:var(--dim); font-size:14px; }
+footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../">FONI</a>
+  <a class="cta" href="../#download">Get the free beta</a>
+</header>
+<main>
+  <h1>How to hit −16 LUFS for Apple Podcasts (and −14 for Spotify / YouTube)</h1>
+  <p class="lede">Short answer: aim for −16 LUFS integrated with true peak at or below −1 dBTP. That suits Apple Podcasts and plays fine everywhere else. Here is what the numbers mean and three free ways to get there.</p>
+
+  <h2>The targets</h2>
+  <table>
+    <tr><th>Platform</th><th>Integrated loudness</th><th>True peak</th></tr>
+    <tr><td>Apple Podcasts</td><td class="num">−16 LUFS (±1)</td><td class="num">≤ −1 dBTP</td></tr>
+    <tr><td>Spotify</td><td class="num">−14 LUFS</td><td class="num">≤ −1 dBTP</td></tr>
+    <tr><td>YouTube</td><td class="num">about −14 LUFS</td><td class="num">≤ −1 dBTP</td></tr>
+    <tr><td>Broadcast (EBU R128)</td><td class="num">−23 LUFS</td><td class="num">≤ −1 dBTP</td></tr>
+  </table>
+  <p>Apple recommends keeping the overall loudness around −16 LKFS (the same unit as LUFS) with ±1 dB tolerance, and true peak no higher than −1 dBFS (<a href="https://podcasters.apple.com/support/audio-requirements">Apple Podcasts audio requirements</a>). Spotify normalizes playback to −14 LUFS following ITU-R BS.1770 (<a href="https://artists.spotify.com/help/article/loudness-normalization">Spotify loudness normalization</a>). YouTube does not publish an official podcast target; −14 LUFS is the value most creators use.</p>
+  <div class="box"><b>Which one should I pick?</b> If you publish everywhere, use −16 LUFS. Spotify turns quieter files up only as far as their peaks allow, so a −16 episode may play a little quieter there than a −14 one; the difference is small. If you publish only on YouTube or Spotify, −14 is fine.</div>
+
+  <h2>LUFS and true peak in one minute</h2>
+  <ul>
+    <li><b>LUFS</b> measures how loud audio sounds to people, averaged over the whole episode. It is not the same as the peak meter in your editor.</li>
+    <li><b>Integrated</b> means "over the whole file". A single loud laugh barely changes it; a quiet second half does.</li>
+    <li><b>True peak (dBTP)</b> is the highest level the audio reaches after it is turned back into sound, including peaks between samples. Keeping it at −1 dBTP leaves room for MP3 and AAC encoding.</li>
+  </ul>
+
+  <h2>Three free ways to get there</h2>
+  <h3>1. Audacity: Loudness Normalization</h3>
+  <ol>
+    <li>Edit your episode first (cuts, music, levels between speakers).</li>
+    <li>Select all, then use Audacity's built-in <code>Loudness Normalization</code> effect and set it to −16 LUFS.</li>
+    <li>Add a limiter at the end with the ceiling at −1 dB, then export.</li>
+  </ol>
+  <p>This sets the average, but it does not fix a guest who is much quieter than the host, or a sentence you trail off at the end of. Normalization moves the whole file up or down by one amount.</p>
+
+  <h3>2. Any DAW: a loudness meter plus a limiter</h3>
+  <p>Put a free loudness meter on the master, play the whole episode, and raise or lower the gain until the integrated reading lands on −16. A true-peak limiter at −1 dBTP catches the peaks. Accurate, but slow: you have to play the full episode to read the integrated value.</p>
+
+  <h3>3. FONI: level the voice and land on the target in one plugin</h3>
+  <p><a href="../">FONI</a> is our free voice plugin (VST3, AU, CLAP and standalone, Windows and macOS). Pick <em>Apple Podcasts (−16)</em> or <em>YouTube / Spotify (−14)</em> under Target and it does three things at once:</p>
+  <ul>
+    <li>evens out loud and quiet sentences while you talk, so the level stays steady through the episode;</li>
+    <li>brings the output to the target and shows <em>On target</em> once it is there, after a minute or so of speech;</li>
+    <li>keeps true peak under the ceiling you choose (−1 dBTP by default).</li>
+  </ul>
+  <p>Listen to the <a href="../#listen">before and after samples</a>: −25.8 → −15.9 LUFS on the first one, with the default settings and nothing else.</p>
+
+  <h2>Common mistakes</h2>
+  <ul>
+    <li><b>Normalizing peaks instead of loudness.</b> "Normalize to −1 dB" in an editor sets the loudest peak, not the loudness. Two episodes normalized this way can be 6 dB apart.</li>
+    <li><b>Measuring a short clip.</b> Integrated loudness needs the whole episode. Measure the final export.</li>
+    <li><b>Hitting the target with a quiet guest.</b> The average can be −16 while the guest sits 8 dB under the host. Level the voices first, then set loudness.</li>
+    <li><b>Limiting to 0 dB.</b> Without −1 dBTP of headroom, MP3 encoding can clip.</li>
+  </ul>
+  <p class="src">Sources: <a href="https://podcasters.apple.com/support/audio-requirements">Apple Podcasts audio requirements</a> · <a href="https://artists.spotify.com/help/article/loudness-normalization">Spotify for Artists: loudness normalization</a>. Last checked 17 November 2026.</p>
+</main>
+<footer>© 2026 Revolver Audio · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A free Auphonic alternative that runs inside your DAW · FONI</title>
+<meta name="description" content="Auphonic is great, but free only for 2 hours a month and it runs in the cloud. FONI is a free voice leveler plugin that levels, de-esses, cleans noise and hits -16 LUFS inside your DAW, with no hour limits. An honest comparison.">
+<link rel="canonical" href="https://revolver-audio.github.io/foni-plugin/guides/auphonic-alternative.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#141316; --panel:#1c1a20; --line:#2c2930; --cream:#efe7d8; --dim:#948c9c; --coral:#ff7a59; --mint:#74d2b3;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; color-scheme:dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--ink); color:var(--cream); font:17px/1.65 var(--body); }
+a { color:var(--coral); }
+header, main, footer { max-width:760px; margin:0 auto; padding:0 22px; }
+header { padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+header a.brand { font:800 20px var(--display); letter-spacing:.18em; color:var(--cream); text-decoration:none; }
+header a.cta { background:var(--coral); color:#1a0f0b; padding:8px 14px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px; }
+h1 { font:800 clamp(30px,5vw,44px)/1.1 var(--display); margin:48px 0 14px; }
+h2 { font:700 26px/1.2 var(--display); margin:44px 0 10px; }
+.lede { color:var(--dim); font-size:19px; }
+table { width:100%; border-collapse:collapse; margin:18px 0; font-size:16px; }
+th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); }
+th { color:var(--dim); font-weight:500; font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+td.num { font-family:var(--mono); color:var(--mint); white-space:nowrap; }
+td.bad { font-family:var(--mono); color:var(--coral); white-space:nowrap; }
+.box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:20px 0; }
+ol li, ul li { margin:6px 0; }
+code { font-family:var(--mono); font-size:.92em; color:var(--mint); }
+.src { color:var(--dim); font-size:14px; }
+footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../">FONI</a>
+  <a class="cta" href="../#download">Get the free beta</a>
+</header>
+<main>
+<h1>A free Auphonic alternative that runs inside your DAW</h1>
+<p class="lede">Auphonic is one of the best automatic podcast finishers there is. It is also a cloud service with a monthly hour limit on the free plan. If you would rather finish your voice in real time, inside Audacity, REAPER, Logic or any other DAW, with no upload and no hour counter, FONI does the same core job for free.</p>
+
+<h2>The short version</h2>
+<table>
+<tr><th></th><th>Auphonic</th><th>FONI</th></tr>
+<tr><td>Where it runs</td><td>In the cloud (upload, process, download)</td><td>On your computer, as a VST3 / AU / CLAP plugin or standalone app</td></tr>
+<tr><td>Free use</td><td>2 hours of processed audio per month <span class="src">(auphonic.com/pricing)</span></td><td class="num">Unlimited</td></tr>
+<tr><td>Paid plans</td><td>From $11 / month (9 hours, billed yearly)</td><td>None. FONI is free</td></tr>
+<tr><td>Works in real time</td><td>No, file-based</td><td class="num">Yes: you hear the result while you record or edit</td></tr>
+<tr><td>Leveling quiet and loud passages</td><td>Yes</td><td class="num">Yes</td></tr>
+<tr><td>Loudness target (−16 / −14 / −19 / −23 LUFS)</td><td>Yes</td><td class="num">Yes, with a true-peak ceiling</td></tr>
+<tr><td>Noise and hum cleanup</td><td>Yes</td><td class="num">Yes (Noise cleanup)</td></tr>
+<tr><td>De-essing and plosive control</td><td>See Auphonic's docs</td><td class="num">Yes, automatic</td></tr>
+<tr><td>ACX audiobook check</td><td>Loudness targets</td><td class="num">Live RMS / peak / noise-floor readout against the ACX limits</td></tr>
+<tr><td>Multitrack (several hosts)</td><td class="num">Yes, one of its strengths</td><td>Put FONI on each voice track</td></tr>
+<tr><td>Transcripts, chapters, publishing</td><td class="num">Yes</td><td>No: FONI only does the sound</td></tr>
+</table>
+<p class="src">Auphonic details from its public pricing page, checked November 2026. Prices and plans can change.</p>
+
+<h2>When Auphonic is the better choice</h2>
+<p>If you want one upload that also gives you a transcript, chapter marks and a published episode, or you edit on a phone or tablet with no DAW, Auphonic is hard to beat. Its multitrack mode is also excellent for interviews recorded on separate tracks.</p>
+
+<h2>When FONI is the better choice</h2>
+<ul>
+<li>You publish more than two hours a month and don't want a subscription.</li>
+<li>You already edit in a DAW and want the finished sound <em>while</em> you edit, not after an upload.</li>
+<li>You record audiobooks and want to see RMS, peak and noise floor against the ACX limits as you go.</li>
+<li>You stream or record live and need the processing in real time.</li>
+<li>Your audio can't leave your computer (client work, NDAs).</li>
+</ul>
+
+<div class="box">
+<b>Honest limits.</b> FONI is a free public beta from a small studio (Revolver Audio, Greece). It is a single-voice processor: it does not edit out mistakes, transcribe, or publish. The installers are not code-signed yet, so Windows and macOS show a warning on first install (<a href="install.html">step-by-step help</a>).
+</div>
+
+<h2>Getting the "Auphonic sound" with FONI in three steps</h2>
+<ol>
+<li>Insert FONI on your voice track (last in the chain, or right before your final limiter).</li>
+<li>Pick a preset: <code>Podcast - Natural</code> for most shows, <code>Audiobook (ACX-style)</code> for narration.</li>
+<li>Choose the platform under Target (Apple Podcasts −16, YouTube/Spotify −14) and set Amount to taste. The <a href="manual.html">user guide</a> explains every control.</li>
+</ol>
+<p><a class="cta" style="display:inline-block;background:var(--coral);color:#1a0f0b;padding:10px 16px;border-radius:6px;text-decoration:none;font-weight:600" href="../#download">Download FONI free</a></p>
+</main>
+<footer>© 2026 <a href="https://revolver-audio.github.io/">Revolver Audio</a> · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
+</body>
+</html>

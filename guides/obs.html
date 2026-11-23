@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to use FONI in OBS Studio (free voice leveler for streaming) · FONI</title>
+<meta name="description" content="Load the free FONI voice leveler on your microphone in OBS Studio: a steady, clear voice at −14 LUFS on stream, set up in two minutes on Windows and macOS.">
+<link rel="canonical" href="https://revolver-audio.github.io/foni-plugin/guides/obs.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#141316; --panel:#1c1a20; --line:#2c2930; --cream:#efe7d8; --dim:#948c9c; --coral:#ff7a59; --mint:#74d2b3;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace; color-scheme:dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--ink); color:var(--cream); font:17px/1.65 var(--body); }
+a { color:var(--coral); }
+header, main, footer { max-width:760px; margin:0 auto; padding:0 22px; }
+header { padding-top:28px; display:flex; justify-content:space-between; align-items:center; }
+header a.brand { font:800 20px var(--display); letter-spacing:.18em; color:var(--cream); text-decoration:none; }
+header a.cta { background:var(--coral); color:#1a0f0b; padding:8px 14px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px; }
+h1 { font:800 clamp(30px,5vw,44px)/1.1 var(--display); margin:48px 0 14px; }
+h2 { font:700 26px/1.2 var(--display); margin:44px 0 10px; }
+.lede { color:var(--dim); font-size:19px; }
+table { width:100%; border-collapse:collapse; margin:18px 0; font-size:16px; }
+th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); }
+th { color:var(--dim); font-weight:500; font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
+td.num { font-family:var(--mono); color:var(--mint); white-space:nowrap; }
+td.bad { font-family:var(--mono); color:var(--coral); white-space:nowrap; }
+.box { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin:20px 0; }
+ol li, ul li { margin:6px 0; }
+code { font-family:var(--mono); font-size:.92em; color:var(--mint); }
+.src { color:var(--dim); font-size:14px; }
+footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../">FONI</a>
+  <a class="cta" href="../#download">Get the free beta</a>
+</header>
+<main>
+  <h1>How to use FONI in OBS Studio</h1>
+  <p class="lede">FONI keeps your voice at one steady level on stream: quiet words come up, shouts come down, harsh S sounds are softened and the output never clips. Here is how to put it on your microphone in OBS in about two minutes.</p>
+
+  <h2>Why you need a small helper</h2>
+  <p>OBS Studio can only load older VST2 plug-ins by itself. FONI is a modern VST3 plug-in, so OBS needs a free VST3 host: <b>atkAudio Plugin for OBS</b> (Windows, macOS and Linux, OBS 31.1.1 or later). It is a separate free project by atkAudio, not made by us.</p>
+
+  <h2>Windows: one installer</h2>
+  <ol>
+    <li>Download and run the <a href="../#download">FONI installer</a> (0.9.5 or later).</li>
+    <li>If OBS Studio is installed, the installer offers <b>OBS Studio support</b>. Leave it ticked: it installs FONI and the atkAudio host into OBS's plug-in folder for you. (If you already have atkAudio, the option is hidden and your copy is left alone.)</li>
+    <li>Restart OBS, then follow the steps under <a href="#load">Load FONI on your mic</a>.</li>
+  </ol>
+
+  <h2>macOS</h2>
+  <ol>
+    <li>Install FONI with the macOS installer from the <a href="../#download">download section</a>.</li>
+    <li>Install atkAudio from its <a href="https://obsproject.com/forum/resources/atkaudio-plugin.2099/">OBS forum page</a> (the macOS .pkg), then restart OBS.</li>
+  </ol>
+
+  <h2 id="load">Load FONI on your mic</h2>
+  <ol>
+    <li>In the <b>Audio Mixer</b>, click the three dots next to your microphone and choose <b>Filters</b>.</li>
+    <li>Click <b>+</b> and choose <b>atkAudio Plugin Host</b>. Name it FONI.</li>
+    <li>Click <b>Open Plugin Settings</b>. The first time, choose <b>Options → Scan for new or updated VST3 plugins</b> and click <b>Scan</b>.</li>
+    <li>Pick <b>FONI</b> (by Revolver Audio) from the list and load it. The FONI window opens.</li>
+    <li>Choose the preset <b>Live Stream</b>. It aims at −14 LUFS, the loudness YouTube and Twitch viewers are used to.</li>
+    <li>Talk for a few seconds and watch FONI's meter settle. Close the window: the settings are saved with your OBS scene collection.</li>
+  </ol>
+  <div class="box"><b>Put FONI last.</b> If you also use OBS's own filters on the mic (noise suppression, gain), keep FONI at the bottom of the filter list so it sets the final level. Remove OBS's Compressor and Limiter filters: FONI already does both, and two compressors make the voice pump.</div>
+
+  <h2>Good settings for streaming</h2>
+  <table>
+    <tr><th>Control</th><th>Start with</th><th>Why</th></tr>
+    <tr><td>Preset</td><td class="num">Live Stream</td><td>Level, compression and de-essing tuned for talking over games or music</td></tr>
+    <tr><td>Target</td><td class="num">−14 LUFS</td><td>YouTube / Twitch level; use −16 if your stream is mostly quiet talk</td></tr>
+    <tr><td>Noise cleanup</td><td class="num">On in a noisy room</td><td>Turns down fans and hum between phrases; leave it off in a quiet room</td></tr>
+    <tr><td>Low cut</td><td class="num">80–100 Hz</td><td>Removes desk thumps and keyboard rumble</td></tr>
+  </table>
+
+  <h2>Delay and lip sync</h2>
+  <p>FONI looks a few milliseconds ahead so it can catch peaks before they clip, and its noise cleanup works in short blocks. Together that delays your voice by about 25 ms at 48 kHz, less than one video frame at 30 fps, so lip sync is normally fine. If your webcam ever looks ahead of your voice, open <b>Advanced Audio Properties</b> and add the same delay to the camera's audio, or use OBS's <b>Render Delay</b> filter on the camera.</p>
+
+  <h2>No OBS plug-ins allowed? Use the FONI app</h2>
+  <p>FONI also comes as a standalone app. Choose your microphone as its input and a virtual audio cable (for example the free VB-CABLE) as its output, then select that cable as the microphone in OBS, Discord or Zoom. Plug-in mode inside OBS is simpler, so use this only if you need FONI in several apps at once.</p>
+
+  <p class="src">atkAudio Plugin for OBS is a separate free program (AGPL-3.0) by atkAudio: <a href="https://github.com/atkAudio/PluginForObsRelease">source code</a>. Last checked 22 November 2026 with OBS Studio 33 and FONI 0.9.5. See also: <a href="podcast-loudness-lufs.html">How to hit −16 LUFS for podcasts</a> · <a href="install.html">Installing FONI</a>.</p>
+</main>
+<footer>© 2026 <a href="https://revolver-audio.github.io/">Revolver Audio</a> · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
+</body>
+</html>

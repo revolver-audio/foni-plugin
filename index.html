@@ -319,7 +319,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
         <div class="knob">
           <h3>Amount</h3>
           <div class="range num">0–100 %</div>
-          <p>How much FONI does. Leveling, compression, de-essing and pause cleanup move together, so 50&nbsp;% is a natural voice and 100&nbsp;% is radio-tight.</p>
+          <p>How much FONI does. Leveling, compression, de-essing and noise cleanup move together, so 50&nbsp;% is a natural voice and 100&nbsp;% is radio-tight.</p>
         </div>
         <div class="knob">
           <h3>Brightness</h3>
@@ -348,7 +348,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
       <ol class="chain">
         <li><b>Low cut</b><span>4th-order filter, 60–120 Hz. Rumble, desk thumps and handling noise out.</span></li>
         <li><b>Leveler</b><span>Slow gain riding in LUFS. Lifts quiet passages, brings loud ones down, freezes in pauses.</span></li>
-        <li><b>Pause cleanup</b><span>Eases the gain down a little between phrases, so room noise and breaths are not lifted with the voice. Opens instantly when you speak. Not a noise reducer.</span></li>
+        <li><b>Noise cleanup</b><span>Turns down steady room noise, hiss and hum, between phrases and under the voice, so they are not lifted along with it. Leave it off in a quiet room.</span></li>
         <li><b>Compressor</b><span>Soft knee, program-dependent release. Body and glue without pumping.</span></li>
         <li><b>Brightness</b><span>Presence at 4 kHz and an air shelf at 10 kHz on one bipolar control.</span></li>
         <li><b>De-esser</b><span>Relative detection, split-band cut. Works the same on a whisper and a shout.</span></li>
@@ -427,7 +427,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
         <div class="card">
           <h3>Windows</h3>
           <ul>
-            <li>Run <em>FONI-0.9.4-Windows-Setup.exe</em> and tick the formats you want.</li>
+            <li>Run <em>FONI-0.9.5-Windows-Setup.exe</em> and tick the formats you want. If OBS Studio is installed, it can also add <a href="guides/obs.html">OBS support</a>.</li>
             <li>VST3 goes to <code>C:\Program Files\Common Files\VST3</code>, CLAP to <code>C:\Program Files\Common Files\CLAP</code>, the standalone app to <code>C:\Program Files\Revolver Audio\FONI</code>.</li>
             <li>If SmartScreen appears, choose <em>More info → Run anyway</em>.</li>
           </ul>
@@ -448,6 +448,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
           </ul>
           <h3 style="margin-top:24px" id="changelog">Changelog</h3>
           <ul>
+            <li><b>0.9.5</b> · 24 Nov 2026 · <b>Noise cleanup</b> (was Pause cleanup) now really lowers room noise, hiss and hum, also under the voice. Smoother compression, better de-essing and plosive control, clearer voice on laptop and budget mics. Standalone app: new <b>File mode</b> to open a recording, see its waveform, get suggested settings, process it and export WAV, AIFF, FLAC or OGG. Windows installer can add <a href="guides/obs.html">OBS Studio support</a>. Windows first; the macOS build follows in early December.</li>
             <li><b>0.9.4</b> · 18 Nov 2026 · <em>Before</em> button: hear the original at the same loudness as the output (level-matched A/B). <em>ACX</em> view: live RMS, peak and noise floor against the ACX audiobook limits, with a suggested Target when the RMS is out of range. <b>Mac fix:</b> FONI now runs on Intel Macs too; 0.9.1–0.9.3 were built for Apple Silicon only.</li>
             <li><b>0.9.3</b> · 16 Nov 2026 · No more level dips in continuous speech with Pause cleanup on; output lands on the loudness target more precisely, also on noisy recordings; fix for hosts that send fewer channels.</li>
             <li><b>0.9.2</b> · 15 Nov 2026 · AAX left out of the installers until it is signed.</li>
@@ -503,14 +504,14 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: 
       <div>
         <h2>Free while in beta. Download now.</h2>
         <p>FONI 0.9 beta is free for Windows 10/11 and macOS 11+. The installer lets you pick VST3, CLAP, AU (Mac) and the standalone app. A Pro version with extra controls will follow; beta users will hear about it first.</p>
-        <p class="small"><b>New in 0.9.4:</b> <em>Before</em> plays the original at the same loudness as FONI's output, for a fair comparison, and the new <em>ACX</em> view checks RMS, peak and noise floor for audiobooks and suggests the Target. <a href="guides/manual.html">What every control does</a>.</p>
+        <p class="small"><b>New in 0.9.5 (Windows):</b> real <em>Noise cleanup</em> for room noise and hum, a cleaner sound on laptop mics, and a <em>File mode</em> in the standalone app: open a recording, get suggested settings, export. Works in <a href="guides/obs.html">OBS Studio</a> too. The Mac download is still 0.9.4; 0.9.5 for Mac follows in early December. <a href="guides/manual.html">What every control does</a>.</p>
         <p class="small">Tried it? <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2Vu0lhPTQ5qShulUdig0Zhz8NmGvMvJh4G_ELlXIUwY4lPg/viewform" target="_blank" rel="noopener">Tell us what you think</a>.</p>
-        <p class="small">New to loudness? Read <a href="guides/podcast-loudness-lufs.html">How to hit −16 LUFS for Apple Podcasts (and −14 for Spotify / YouTube)</a>. Recording an audiobook? See <a href="guides/acx-audacity.html">How to pass ACX in Audacity with free tools</a>. Using Auphonic? See <a href="guides/auphonic-alternative.html">FONI vs Auphonic, honestly compared</a>.</p>
+        <p class="small">New to loudness? Read <a href="guides/podcast-loudness-lufs.html">How to hit −16 LUFS for Apple Podcasts (and −14 for Spotify / YouTube)</a>. Recording an audiobook? See <a href="guides/acx-audacity.html">How to pass ACX in Audacity with free tools</a>. Using Auphonic? See <a href="guides/auphonic-alternative.html">FONI vs Auphonic, honestly compared</a>. Streaming? See <a href="guides/obs.html">How to use FONI in OBS Studio</a>.</p>
         <p class="small">Made in Greece by Revolver Audio.</p>
       </div>
       <div class="dl-buttons">
-        <a class="cta" href="https://github.com/revolver-audio/foni-plugin/releases/download/v0.9.4-beta/FONI-0.9.4-Windows-Setup.exe">Download for Windows <span class="num">5.3 MB · .exe</span></a>
-        <a class="cta" href="https://github.com/revolver-audio/foni-plugin/releases/download/v0.9.4-beta/FONI-0.9.4-macOS.pkg">Download for macOS <span class="num">6.9 MB · .pkg</span></a>
+        <a class="cta" href="downloads/FONI-0.9.5-Windows-Setup.exe">Download for Windows <span class="num">0.9.5 · 14.5 MB · .exe</span></a>
+        <a class="cta" href="https://github.com/revolver-audio/foni-plugin/releases/download/v0.9.4-beta/FONI-0.9.4-macOS.pkg">Download for macOS <span class="num">0.9.4 · 6.9 MB · .pkg</span></a>
         <p class="small" style="margin:4px 0 0">Windows: if SmartScreen appears, choose <em>More info → Run anyway</em>. macOS: if the installer is blocked, open <em>System Settings → Privacy &amp; Security</em> and click <em>Open Anyway</em>. Signed installers are coming. <a href="guides/install.html">Step-by-step install help</a>.</p>
       </div>
     </div>

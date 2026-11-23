@@ -63,12 +63,13 @@ footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
   <h2 id="load">Load FONI on your mic</h2>
   <ol>
     <li>In the <b>Audio Mixer</b>, click the three dots next to your microphone and choose <b>Filters</b>.</li>
-    <li>Click <b>+</b> and choose <b>atkAudio Plugin Host</b>. Name it FONI.</li>
+    <li>Click <b>+</b> and choose <b>atkAudio PluginHost</b>. Name it FONI.</li>
     <li>Click <b>Open Plugin Settings</b>. The first time, choose <b>Options → Scan for new or updated VST3 plugins</b> and click <b>Scan</b>.</li>
-    <li>Pick <b>FONI</b> (by Revolver Audio) from the list and load it. The FONI window opens.</li>
+    <li>Click <b>FONI</b> (Revolver Audio) in the list, then <b>Load plugin</b>. The FONI window opens inside the atkAudio window.</li>
     <li>Choose the preset <b>Live Stream</b>. It aims at −14 LUFS, the loudness YouTube and Twitch viewers are used to.</li>
     <li>Talk for a few seconds and watch FONI's meter settle. Close the window: the settings are saved with your OBS scene collection.</li>
   </ol>
+  <div class="box"><b>Scan stuck?</b> Some plug-ins, Waves in particular, can hang the scan. Close OBS, copy <code>FONI.vst3</code> from <code>C:\Program Files\Common Files\VST3</code> into a new folder (for example <code>Documents\FONI</code>), then in the scan window remove the default folders, add that folder and scan. It takes a second, and atkAudio remembers FONI from then on.</div>
   <div class="box"><b>Put FONI last.</b> If you also use OBS's own filters on the mic (noise suppression, gain), keep FONI at the bottom of the filter list so it sets the final level. Remove OBS's Compressor and Limiter filters: FONI already does both, and two compressors make the voice pump.</div>
 
   <h2>Good settings for streaming</h2>
@@ -86,7 +87,7 @@ footer { color:var(--dim); font-size:14px; padding:48px 22px 40px; }
   <h2>No OBS plug-ins allowed? Use the FONI app</h2>
   <p>FONI also comes as a standalone app. Choose your microphone as its input and a virtual audio cable (for example the free VB-CABLE) as its output, then select that cable as the microphone in OBS, Discord or Zoom. Plug-in mode inside OBS is simpler, so use this only if you need FONI in several apps at once.</p>
 
-  <p class="src">atkAudio Plugin for OBS is a separate free program (AGPL-3.0) by atkAudio: <a href="https://github.com/atkAudio/PluginForObsRelease">source code</a>. Written 24 November 2026 for OBS Studio 33 and FONI 0.9.5. See also: <a href="podcast-loudness-lufs.html">How to hit −16 LUFS for podcasts</a> · <a href="install.html">Installing FONI</a>.</p>
+  <p class="src">atkAudio Plugin for OBS is a separate free program (AGPL-3.0) by atkAudio: <a href="https://github.com/atkAudio/PluginForObsRelease">source code</a>. Tested 24 November 2026 with OBS Studio 32.2.2 on Windows, atkAudio 0.35.0 and FONI 0.9.5. See also: <a href="podcast-loudness-lufs.html">How to hit −16 LUFS for podcasts</a> · <a href="install.html">Installing FONI</a>.</p>
 </main>
 <footer>© 2026 <a href="https://revolver-audio.github.io/">Revolver Audio</a> · <a href="../">FONI voice leveler</a> · <a href="mailto:revolveraudio.skg@gmail.com">revolveraudio.skg@gmail.com</a></footer>
 </body>
